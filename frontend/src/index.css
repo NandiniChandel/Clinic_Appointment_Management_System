@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.active hr{
+  @apply block
+
+}
+
+::-webkit-scrollbar{
+  @apply hidden
+}
+
+/* grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] */
