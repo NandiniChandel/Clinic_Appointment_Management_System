@@ -1,33 +1,66 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { assets } from '../assets/assets_frontend/assets'
 import { Navigate, NavLink, useNavigate } from 'react-router-dom'
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 
 
 const Navbar = () => {
+
+  const home=useRef();
+  const alldoctor=useRef();
+  const about=useRef();
+  const contact=useRef();
+  const logo=useRef();
+
+  const arr=[home,alldoctor,about,contact]
+
+
+  useGSAP(()=>{
+    
+    const timeline=gsap.timeline();
+
+    timeline.from(logo.current,{
+      y:-100,
+      opacity:0,
+      stagger:0.1,
+      ease:'linear'
+
+    })
+
+    timeline.from(arr.map(r => r.current),{
+      y:-100,
+      opacity:0,
+      stagger:0.1,
+      ease:'linear'
+
+    })
+  },[])
   
   const navigate=useNavigate();
 
-  const [showMenu, setShowMenu]=useState(false);
+  // const [showMenu, setShowMenu]=useState(false);
   const [token, setToken]=useState(true);
 
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
-     <img src={assets.logo} alt="" className='w-44 cursor-pointer' onClick={()=>{navigate('/')}}/>
+     <img ref={logo} src={assets.logo} alt="" className='w-44 cursor-pointer' onClick={()=>{navigate('/')}}/>
       <ul className='hidden md:flex items-start gap-5 font-medium'>
         <NavLink to='/'>
-          <li className='py-1'>HOME</li>
+          <li className='py-1' ref={home}>HOME</li>
           <hr className='border-none outline-none h-0.5  hidden w-3/5 m-auto'/>
         </NavLink>
         <NavLink to='/doctors'>
-          <li className='py-1'>ALL DOCTORS</li>
+          <li className='py-1' ref={alldoctor}>ALL DOCTORS</li>
           <hr className='border-none outline-none h-0.5 bg-[#5f6fff]  hidden w-3/5 m-auto'/>
         </NavLink>
         <NavLink to='/about'>
-          <li className='py-1'>ABOUT</li>
+          <li className='py-1' ref={about}>ABOUT</li>
           <hr className='border-none outline-none h-0.5 bg-[#5f6fff]  hidden w-3/5 m-auto'/>
         </NavLink>
         <NavLink to='/contact'>
-          <li className='py-1'>CONTACT</li>
+          <li className='py-1' ref={contact}>CONTACT</li>
           <hr className='border-none outline-none h-0.5 bg-[#5f6fff]  hidden w-3/5 m-auto'/>
         </NavLink>
       </ul>
