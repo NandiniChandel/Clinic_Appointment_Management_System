@@ -12,11 +12,11 @@ const Navbar = () => {
 
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
-      <img src={assets.logo} alt="" className='w-44 cursor-pointer'/>
+     <img src={assets.logo} alt="" className='w-44 cursor-pointer' onClick={()=>{navigate('/')}}/>
       <ul className='hidden md:flex items-start gap-5 font-medium'>
         <NavLink to='/'>
           <li className='py-1'>HOME</li>
-          <hr className='border-none outline-none h-0.5 bg-[#5f6fff]  hidden w-3/5 m-auto'/>
+          <hr className='border-none outline-none h-0.5  hidden w-3/5 m-auto'/>
         </NavLink>
         <NavLink to='/doctors'>
           <li className='py-1'>ALL DOCTORS</li>
