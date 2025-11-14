@@ -1,16 +1,20 @@
-import React, { useRef } from 'react'
+import React, {useEffect, useRef } from 'react'
 import { specialityData } from '../assets/assets_frontend/assets'
 import { Link } from 'react-router-dom'
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from '@gsap/react';
+import { AppContext } from '../context/AppContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const SpecialityMenu = () => {
 
+
   const containerRef = useRef();
+
+
 
 useGSAP(() => {
   const items = gsap.utils.toArray(containerRef.current.children);
